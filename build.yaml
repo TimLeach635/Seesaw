@@ -4,7 +4,7 @@ jobs:
   continueOnError: false
   steps:
   - bash: dotnet build ./Seesaw/Seesaw.csproj
-  - bash: dotnet publish ./Seesaw/Seesaw.csproj --configuration Release --output $(Build.StagingDirectory)/service --no-build
+  - bash: dotnet publish ./Seesaw/Seesaw.csproj --configuration Release --output $(Build.StagingDirectory)/service --no-build --verbosity diagnostic
   - task: AzureWebApp@1
     inputs:
       azureSubscription: 'Azure Seesaw resource group'
