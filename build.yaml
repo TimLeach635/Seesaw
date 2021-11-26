@@ -1,0 +1,12 @@
+- bash: dotnet build ./Seesaw/Seesaw.csproj
+- bash: dotnet publish ./Seesaw/Seesaw.csproj --configuration Release --output $(Build.StagingDirectory)/service --no-build
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Azure Seesaw resource group'
+    appType: 'webApp'
+    appName: 'Softwire-Seesaw-Dev'
+    deployToSlotOrASE: true
+    resourceGroupName: 'Seesaw'
+    slotName: 'production'
+    package: '$(Build.StagingDirectory)/service/*.zip'
+    deploymentMethod: 'auto'
