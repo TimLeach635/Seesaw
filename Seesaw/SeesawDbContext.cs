@@ -12,5 +12,10 @@ namespace Seesaw
         { 
             optionsBuilder.UseNpgsql(@"User ID=seesaw;Password=seesaw;Host=localhost;Port=5432;Database=Seesaw-Dev;", x=> x.UseNetTopologySuite());
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.HasPostgresExtension("postgis");
+        }
     }
 }
