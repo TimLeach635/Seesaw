@@ -25,15 +25,23 @@ namespace Seesaw
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.HasPostgresExtension("postgis");
+            
+            //DeskBooking.Booker -> User, many -> one, don't store reverse
             builder.Entity<DeskBooking>()
                 .HasOne(db => db.Booker)
                 .WithMany();
+            
+            //DeskBooking.Occupier -> User, many -> one, store reverse relations in User.DeskBookings
             builder.Entity<DeskBooking>()
                 .HasOne(db => db.Occupier)
                 .WithMany(u => u.DeskBookings);
+            
+            //MeetingRoomBooking.Booker -> User, many -> one, don't store reverse
             builder.Entity<MeetingRoomBooking>()
                 .HasOne(mrb => mrb.Booker)
                 .WithMany();
+            
+            //MeetingRoomBooking.Occupier -> User, many -> one, store reverse relations in User.MeetingRoomBookings
             builder.Entity<MeetingRoomBooking>()
                 .HasOne(mrb => mrb.Occupier)
                 .WithMany(u => u.MeetingRoomBookings);
