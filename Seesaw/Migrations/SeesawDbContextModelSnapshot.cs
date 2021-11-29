@@ -67,6 +67,21 @@ namespace Seesaw.Migrations
                     b.ToTable("MeetingRooms");
                 });
 
+            modelBuilder.Entity("Seesaw.Models.MeetingRoomAttributes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MeetingRoomAttributes");
+                });
+
             modelBuilder.Entity("Seesaw.Models.Office", b =>
                 {
                     b.Property<int>("Id")
