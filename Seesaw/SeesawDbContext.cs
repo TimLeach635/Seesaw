@@ -7,12 +7,12 @@ namespace Seesaw
     {
         public DbSet<Office> Offices { get; set; }
         public DbSet<MeetingRoom> MeetingRooms { get; set; }
-
         public DbSet<MeetingRoomAttribute> MeetingRoomAttributes { get; set; }
-
         public DbSet<Unit> Units { get; set; }
         public DbSet<Desk> Desks { get; set; }
-
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<TeamReservation> TeamReservations { get; set; } 
+        public DbSet<DeskBooking> DeskBookings { get; set; } 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         { 
