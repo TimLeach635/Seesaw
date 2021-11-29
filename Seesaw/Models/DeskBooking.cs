@@ -6,8 +6,8 @@ namespace Seesaw.Models
     {
         public int Id { get; set; }
         public DateTime Created { get; set; }
-        public int BookerId { get; set; }
-        public int OccupierId { get; set; }
+        public User Booker { get; set; }
+        public User Occupier { get; set; }
         public DateTime BookedFrom { get; set; }
         public DateTime BookedTo { get; set; }
         public Desk BookedDesk { get; set; }

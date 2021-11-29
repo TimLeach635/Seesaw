@@ -25,22 +25,18 @@ namespace Seesaw
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.HasPostgresExtension("postgis");
-            builder.Entity<User>()
-                .HasMany(user => user.DeskBookings)
-                .WithOne()
-                .HasForeignKey(db => db.BookerId);
-            builder.Entity<User>()
-                .HasMany(user => user.DeskBookings)
-                .WithOne()
-                .HasForeignKey(db => db.OccupierId);
-            builder.Entity<User>()
-                .HasMany(user => user.MeetingRoomBookings)
-                .WithOne()
-                .HasForeignKey(mrb => mrb.BookerId);
-            builder.Entity<User>()
-                .HasMany(user => user.MeetingRoomBookings)
-                .WithOne()
-                .HasForeignKey(mrb => mrb.OccupierId);
+            builder.Entity<DeskBooking>()
+                .HasOne(db => db.Booker)
+                .WithMany();
+            builder.Entity<DeskBooking>()
+                .HasOne(db => db.Occupier)
+                .WithMany(u => u.DeskBookings);
+            builder.Entity<MeetingRoomBooking>()
+                .HasOne(mrb => mrb.Booker)
+                .WithMany();
+            builder.Entity<MeetingRoomBooking>()
+                .HasOne(mrb => mrb.Occupier)
+                .WithMany(u => u.MeetingRoomBookings);
         }
     }
 }
