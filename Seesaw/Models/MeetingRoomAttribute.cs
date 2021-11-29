@@ -6,6 +6,6 @@ namespace Seesaw.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<MeetingRoom> CompliantRooms { get; set; }
+        public List<MeetingRoom> QualifyingRooms { get; set; }
     }
 }

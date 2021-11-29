@@ -8,8 +8,8 @@ namespace Seesaw.Models
         public int Id { get; set; }
         public Unit ContainingUnit { get; set; }
         public Polygon BoundingBox { get; set; }
-        //public List<DeskAttributes> Attributes { get; set; }
-        //public List<TeamReservations> TeamReservations { get; set; }
-        //public List<Bookings> Bookings { get; set; }
+        public List<DeskAttribute> Attributes { get; set; }
+        public List<TeamReservation> TeamReservations { get; set; }
+        public List<DeskBooking> Bookings { get; set; }
     }
 }

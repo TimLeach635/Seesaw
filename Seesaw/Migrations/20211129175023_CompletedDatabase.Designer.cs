@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -10,9 +11,10 @@ using Seesaw;
 namespace Seesaw.Migrations
 {
     [DbContext(typeof(SeesawDbContext))]
-    partial class SeesawDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211129175023_CompletedDatabase")]
+    partial class CompletedDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,16 +119,13 @@ namespace Seesaw.Migrations
                     b.Property<DateTime>("BookedTo")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("BookerId")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DisplayName")
                         .HasColumnType("text");
 
-                    b.Property<int>("OccupierId")
+                    b.Property<int?>("OccupierId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -192,16 +191,13 @@ namespace Seesaw.Migrations
                     b.Property<DateTime>("BookedUntil")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("BookerId")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DisplayName")
                         .HasColumnType("text");
 
-                    b.Property<int>("OccupierId")
+                    b.Property<int?>("OccupierId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("RoomId")
@@ -372,13 +368,13 @@ namespace Seesaw.Migrations
                         .WithMany("Bookings")
                         .HasForeignKey("BookedDeskId");
 
-                    b.HasOne("Seesaw.Models.User", null)
+                    b.HasOne("Seesaw.Models.User", "Occupier")
                         .WithMany("DeskBookings")
-                        .HasForeignKey("OccupierId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OccupierId");
 
                     b.Navigation("BookedDesk");
+
+                    b.Navigation("Occupier");
                 });
 
             modelBuilder.Entity("Seesaw.Models.MeetingRoom", b =>
@@ -392,15 +388,15 @@ namespace Seesaw.Migrations
 
             modelBuilder.Entity("Seesaw.Models.MeetingRoomBooking", b =>
                 {
-                    b.HasOne("Seesaw.Models.User", null)
+                    b.HasOne("Seesaw.Models.User", "Occupier")
                         .WithMany("MeetingRoomBookings")
-                        .HasForeignKey("OccupierId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OccupierId");
 
                     b.HasOne("Seesaw.Models.MeetingRoom", "Room")
                         .WithMany("Bookings")
                         .HasForeignKey("RoomId");
+
+                    b.Navigation("Occupier");
 
                     b.Navigation("Room");
                 });

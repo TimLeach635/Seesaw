@@ -7,5 +7,6 @@ namespace Seesaw.Models
         public int Id { get; set; }
         public List<Unit> Units { get; set; }
         public string DisplayName { get; set; }
+        public List<User> DefaultOccupiers { get; set; }
     }
 }

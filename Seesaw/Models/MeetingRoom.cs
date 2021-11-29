@@ -11,5 +11,6 @@ namespace Seesaw.Models
         public Polygon BoundingBox { get; set; }
         public int Capacity { get; set; }
         public List<MeetingRoomAttribute> Attributes { get; set; }
+        public List<MeetingRoomBooking> Bookings { get; set; }
     }
 }
