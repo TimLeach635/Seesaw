@@ -3,8 +3,7 @@ jobs:
   displayName: Build and deploy
   continueOnError: false
   steps:
-  - bash: dotnet build ./Seesaw/Seesaw.csproj
-  - bash: dotnet publish ./Seesaw/Seesaw.csproj --configuration Release --output $(Build.StagingDirectory)/service --no-build --verbosity normal
+  - bash: dotnet publish ./Seesaw/Seesaw.csproj --configuration Release --output $(Build.StagingDirectory)/service
   - task: AzureWebApp@1
     inputs:
       azureSubscription: 'Azure Seesaw resource group'
