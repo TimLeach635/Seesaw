@@ -10,6 +10,6 @@ namespace Seesaw.Models
         public string DisplayName { get; set; }
         public Polygon BoundingBox { get; set; }
         public int Capacity { get; set; }
-        //public List<MeetingRoomAttribute> Attributes { get; set; }
+        public List<MeetingRoomAttribute> Attributes { get; set; }
     }
 }
